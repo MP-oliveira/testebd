@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, { css } from 'styled-components/macro'
+import styled, { css } from 'styled-components/macro';
+import {Button} from '../components/Button';
 
 const HeroSection = styled.section`
   height: 100vh;
@@ -17,12 +18,32 @@ const HeroWrapper = styled.div`
   overflow: hidden;
   position: relative;
 `
+const HeroSlide = styled.div``
+const HeroSlider = styled.div``
+const HeroImage = styled.img``
+const HeroContent = styled.div``
 
-const Hero = () => {
+const Hero = ({ slides }) => {
   return (
     <HeroSection>
-      <HeroWrapper/>
-        <h1>Hero</h1>
+      <HeroWrapper>
+        {slides.map((slide, index) => {
+          return (
+            <HeroSlide key={index}>
+              <HeroSlider>
+                <HeroImage />
+                <HeroContent>
+                  <h1>{slide.title}</h1>
+                  <p>{slide.description}</p>
+                  <Button to={slide.path} primary= "true">
+                    {slide.label}
+                  </Button>
+                </HeroContent>
+              </HeroSlider>
+            </HeroSlide>
+          )
+        })}
+      </HeroWrapper>
     </HeroSection>
   )
 }
